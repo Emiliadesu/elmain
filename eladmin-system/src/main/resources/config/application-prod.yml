@@ -1,0 +1,248 @@
+#配置数据源
+spring:
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      url: jdbc:log4jdbc:mysql://${DB_HOST:rm-k1hu1bh5w37f1qe3s.mysql.rds.aliyuncs.com}:${DB_PORT:3306}/${DB_NAME:eladmin}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: ${DB_USER:fladmin}
+      password: ${DB_PWD:P^Mn$qGHf5B*OZgo}
+      # 初始连接数
+      initial-size: 5
+      # 最小连接数
+      min-idle: 10
+      # 最大连接数
+      max-active: 20
+      # 获取连接超时时间
+      max-wait: 5000
+      # 连接有效性检测时间
+      time-between-eviction-runs-millis: 60000
+      # 连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      # 连接在池中最大生存的时间
+      max-evictable-idle-time-millis: 900000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 检测连接是否有效
+      validation-query: select 1
+      # 配置监控统计
+      webStatFilter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: 123456
+        allow:
+      filter:
+        stat:
+          enabled: true
+          # 记录慢SQL
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  redis:
+      #数据库索引
+      database: ${REDIS_DB:0}
+      host: ${REDIS_HOST:r-k1ho4x8ousgedb6ms5.redis.rds.aliyuncs.com}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PWD:oAq!ywie^06ghJQmOLu9Vd3VsDoajAk9}
+      #连接超时时间
+      timeout: 5000
+
+# 登录相关配置
+login:
+  # 登录缓存
+  cache-enable: true
+  #  是否限制单用户登录
+  single: false
+  #  验证码
+  login-code:
+    #  验证码类型配置 查看 LoginProperties 类
+    code-type: arithmetic
+    #  登录图形验证码有效时间/分钟
+    expiration: 2
+    #  验证码高度
+    width: 111
+    #  验证码宽度
+    heigth: 36
+    # 内容长度
+    length: 2
+    # 字体名称，为空则使用默认字体，如遇到线上乱码，设置其他字体即可
+    font-name:
+    # 字体大小
+    font-size: 25
+
+#jwt
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViOTg1ZGE0NTBjMGM4NDA5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  # 令牌过期时间 此处单位/毫秒 ，默认2小时，可在此网站生成 https://www.convertworld.com/zh-hans/time/milliseconds.html
+  token-validity-in-seconds: 7200000
+  # 在线用户key
+  online-key: online-token-
+  # 验证码
+  code-key: code-key-
+  # token 续期检查时间范围（默认30分钟，单位默认毫秒），在token即将过期的一段时间内用户操作了，则给用户的token续期
+  detect: 1800000
+  # 续期时间范围，默认 1小时，这里单位毫秒
+  renew: 3600000
+
+# IP 本地解析
+ip:
+  local-parsing: false
+
+#是否允许生成代码，生产环境设置为false
+generator:
+  enabled: false
+
+#如果生产环境要开启swagger，需要配置请求地址
+#springfox:
+#  documentation:
+#    swagger:
+#      v2:
+#        host: # 接口域名或外网ip
+
+#是否开启 swagger-ui
+swagger:
+  enabled: false
+
+# 文件存储路径
+file:
+  mac:
+    path: ~/file/
+    avatar: ~/avatar/
+  linux:
+    path: /home/eladmin/file/
+    avatar: /home/eladmin/avatar/
+  windows:
+    path: C:\eladmin\file\
+    avatar: C:\eladmin\avatar\
+  # 文件大小 /M
+  maxSize: 100
+  avatarMaxSize: 5
+
+logback:
+  dir: /root/data/log/eladmin
+
+mq:
+  access-key: LTAILrMIaxNYSloH
+  secret-key: sMgf2lbtpJjevoyVWMtzXYSb8kbQXY
+  addr: http://MQ_INST_1788072189104904_BXf4MMqC.mq-internet-access.mq-internet.aliyuncs.com:80
+  cross-border-order-gid: GID_CB_ORDER
+  order-topic: CB_ORDER
+  cross-border-return-gid: GID_CB_RETURN
+  return-topic: CB_RETURN
+  bus-log-gid: GID_BUS_LOG
+  bus-log-topic: BUS_LOG
+  bus-domestic-order-gid: GID_DOMESTIC_ORDER
+  bus-domestic-order-topic: DOMESTIC_ORDER
+
+#快递配置
+express:
+  g-zto-companyid: NBFLWL1359487E30
+  g-zto-key: 92FFDEFF4E1047A6CE
+  g-zto-url: https://gjapi.zt-express.com
+  dm-zto-companyid: 29565633d3224ef6985c29897708d65c
+  dm-zto-key: ac3f2ffa3842
+  dm-zto-partner: 1000027287
+  dm-zto-verify: Y47AXU0R7P
+  dm-zto-mail-url: http://japi.zto.cn/submitOrderCode
+  dm-zto-mark-url: http://japi.zto.cn/bagAddrMarkGetmark
+
+# 抖音配置
+douyin:
+  url: https://openapi-fxg.jinritemai.com/
+  app-key: 6910382317422233088
+  app-secret: 779a2e94-4904-40e1-803d-870f25add7c4
+  vender: NBFL
+  sorter-url: http://192.168.2.102:59987
+  sorter-access-key: 4031B44D02529936D4F2D36F81D79D63
+  sorter-secret-key: 3A3D3AC92774DB2E4E4822196F5F3B3D
+
+# 得物配置
+dewu:
+  app-key: PXDRNkie1CtY1TW9
+  app-secret: 8m92ZmhT0j0uF4KRtZJycP6guZJMm6
+  base-url: https://authgw.dewu.com
+
+# 服务器域名
+serverUrl: http://erp.fl56.net
+# 拼多多相关配置
+pdd:
+  signKey: 80db75f13e0e4dce80117e6591666d99
+  url: http://pdd.fl56.net
+  pddUserId: 795604644
+
+# WMS配置
+wms:
+  data-hub:
+    url: http://kjgapi.fl56.net:19192/datahub/FluxWmsJsonApi/
+    app-key: 80AC1A3F-F949-492C-A024-7044B28C8025
+    app-secret: 80AC1A3F-F949-492C-A024-7044B28C8025
+
+# 圈尚配置
+qs:
+  url: https://qs.com
+  partner: NBFL
+  secret: secret
+
+# 卓志
+zhuozhi:
+  url-pms: https://service.etopideal.com/oms
+  app-key: MEECAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQcEJzAlAgEBBCCOy5dr4F0+cxXO96rLy8Cx1BwGp5yL+yEtUPb6a94MaA==
+  pub-key: MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvZ1Iw8VOsiyti1Js2p0y9h9J8UOjwr7PcI1TabsB2M8WCO0xo1/q1UALsjlJNYom9DlXFZsDs78gJWsVJK5WFw==
+
+#蘑菇街
+moGuJie:
+  appKey: 102296
+  appSecret: 51CC7068C6D80586C50765F1A9DE1D1F
+  url: https://openapi.mogujie.com/invoke
+
+#美团
+meiTuan:
+  appId: 7335
+  appSecret: 277fb01858dc69791f1e8ac3bd0effa0
+  url: http://120.26.166.231
+
+
+#邮政
+EMS:
+  partner_id: dN3mB2WitUVQ
+  get-number-url: https://211.156.195.15/iwaybillno-web/a/iwaybill/receive
+  dec-url: http://int.ems.com.cn:8080/kjjktbApi_Server/call.api
+  ecommerce-no: NBFLWL
+  ec-company-id: NBFLWL
+
+SF:
+  aes-key: YuBD6SOUSj3gJrPqukWGq0V6JbPB6vSi
+  hmac-key: BNC6EwjTAoy1kmt2BMu6T4/ZJT092gHO
+  partner-id: FLWLXX
+  cust-id: 5744651295
+  url: http://ESG-ISP-GW.sf-express.com/isp/ws/sfexpressService
+
+ruoYuChen:
+  appId: MTY1MDUwNjA3MzA3Nw==
+  appSecret: ZmQ4MGI1ZTBmZTVmNGQ3MDc3OTI0NTk2YmEwYzA2ZDg=
+  url: http://scm.rycservice.com:8080/stock/erp/send
+  erpCode: ERP001
+
+
+guoMei:
+  key: 89b4641bd1534c538ef376a8a261be9a
+  signSecret: 1c00d7ecb2854163b4b219ca5e8f9bc6
+  apiUrl: http://silk.road.gome.com.cn
+  vendor: VC004
+
+jackYun:
+  appId: 13261846
+  secret: 63eb851b5e0d4b4fbd2c4443849250a3
+  url: http://aliyun.polyapi.com/StorageNotify/Notify/337-EDI-978603-1403676435224462208

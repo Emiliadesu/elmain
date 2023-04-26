@@ -1,0 +1,117 @@
+/*
+*  Copyright 2019-2020 Zheng Jie
+*
+*  Licensed under the Apache License, Version 2.0 (the "License");
+*  you may not use this file except in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*  http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License.
+*/
+package me.zhengjie.service.impl;
+
+import me.zhengjie.domain.AsnHeader;
+import me.zhengjie.domain.WmsOutstock;
+import me.zhengjie.utils.ValidationUtil;
+import me.zhengjie.utils.FileUtil;
+import lombok.RequiredArgsConstructor;
+import me.zhengjie.repository.AsnHeaderRepository;
+import me.zhengjie.service.AsnHeaderService;
+import me.zhengjie.service.dto.AsnHeaderDto;
+import me.zhengjie.service.dto.AsnHeaderQueryCriteria;
+import me.zhengjie.service.mapstruct.AsnHeaderMapper;
+import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import me.zhengjie.utils.PageUtil;
+import me.zhengjie.utils.QueryHelp;
+import java.util.List;
+import java.util.Map;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
+/**
+* @website https://el-admin.vip
+* @description 服务实现
+* @author wangm
+* @date 2021-03-28
+**/
+@Service
+@RequiredArgsConstructor
+public class AsnHeaderServiceImpl implements AsnHeaderService {
+
+    private final AsnHeaderRepository asnHeaderRepository;
+    private final AsnHeaderMapper asnHeaderMapper;
+
+    @Override
+    public Map<String,Object> queryAll(AsnHeaderQueryCriteria criteria, Pageable pageable){
+        Page<AsnHeader> page = asnHeaderRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        return PageUtil.toPage(page.map(asnHeaderMapper::toDto));
+    }
+
+    @Override
+    public List<AsnHeaderDto> queryAll(AsnHeaderQueryCriteria criteria){
+        return asnHeaderMapper.toDto(asnHeaderRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+    }
+
+    @Override
+    @Transactional
+    public AsnHeaderDto findById(Long id) {
+        AsnHeader asnHeader = asnHeaderRepository.findById(id).orElseGet(AsnHeader::new);
+        ValidationUtil.isNull(asnHeader.getId(),"AsnHeader","id",id);
+        return asnHeaderMapper.toDto(asnHeader);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public AsnHeaderDto create(AsnHeader resources) {
+        return asnHeaderMapper.toDto(asnHeaderRepository.save(resources));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void update(AsnHeader resources) {
+        AsnHeader asnHeader = asnHeaderRepository.findById(resources.getId()).orElseGet(AsnHeader::new);
+        ValidationUtil.isNull( asnHeader.getId(),"AsnHeader","id",resources.getId());
+        asnHeader.copy(resources);
+        asnHeaderRepository.save(asnHeader);
+    }
+
+    @Override
+    public void deleteAll(Long[] ids) {
+        for (Long id : ids) {
+            asnHeaderRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public void download(List<AsnHeaderDto> all, HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (AsnHeaderDto asnHeader : all) {
+            Map<String,Object> map = new LinkedHashMap<>();
+            map.put("订单号", asnHeader.getWmsOutstock().getOutOrderSn());
+            map.put("租户编码", asnHeader.getTenantCode());
+            map.put("仓库id", asnHeader.getWarehouseId());
+            list.add(map);
+        }
+        FileUtil.downloadExcel(list, response);
+    }
+
+    @Override
+    public AsnHeader findByOutId(Long outId) {
+        WmsOutstock wmsOutstock=new WmsOutstock();
+        wmsOutstock.setId(outId);
+        AsnHeader asnHeader=new AsnHeader();
+        asnHeader.setWmsOutstock(wmsOutstock);
+        return asnHeaderRepository.findOne(Example.of(asnHeader)).orElse(null);
+    }
+}

@@ -1,0 +1,102 @@
+/*
+*  Copyright 2019-2020 Zheng Jie
+*
+*  Licensed under the Apache License, Version 2.0 (the "License");
+*  you may not use this file except in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*  http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License.
+*/
+package me.zhengjie.service;
+
+import me.zhengjie.domain.ShopToken;
+import me.zhengjie.service.dto.ShopTokenDto;
+import me.zhengjie.service.dto.ShopTokenQueryCriteria;
+import org.springframework.data.domain.Pageable;
+import java.util.Map;
+import java.util.List;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+* @website https://el-admin.vip
+* @description 服务接口
+* @author 王淼
+* @date 2020-10-20
+**/
+public interface ShopTokenService {
+
+    /**
+    * 查询数据分页
+    * @param criteria 条件
+    * @param pageable 分页参数
+    * @return Map<String,Object>
+    */
+    Map<String,Object> queryAll(ShopTokenQueryCriteria criteria, Pageable pageable);
+
+    /**
+    * 查询所有数据不分页
+    * @param criteria 条件参数
+    * @return List<ShopTokenDto>
+    */
+    List<ShopTokenDto> queryAll(ShopTokenQueryCriteria criteria);
+
+    /**
+     * 根据ID查询
+     * @param id ID
+     * @return ShopTokenDto
+     */
+    ShopTokenDto findById(Long id);
+
+    /**
+    * 创建
+    * @param resources /
+    * @return ShopTokenDto
+    */
+    ShopTokenDto create(ShopToken resources);
+
+    /**
+    * 编辑
+    * @param resources /
+    */
+    void update(ShopToken resources);
+
+    /**
+    * 多选删除
+    * @param ids /
+    */
+    void deleteAll(Long[] ids);
+
+    /**
+    * 导出数据
+    * @param all 待导出的数据
+    * @param response /
+    * @throws IOException /
+    */
+    void download(List<ShopTokenDto> all, HttpServletResponse response) throws IOException;
+
+    /**
+     * 获取店铺授权信息
+     * @param shopId
+     * @return
+     */
+    ShopToken queryByShopId(Long shopId);
+
+    ShopToken queryByPaltShopId(String platShopId);
+
+    List<ShopToken> queryEnableTokenByPlatId(Long id);
+
+    void testTokenOverdue(ShopToken shopToken) throws Exception;
+
+    ShopToken queryById(Long id);
+
+    Map<String,Object> copyLink(Long id);
+
+    void toToken(Long id);
+}

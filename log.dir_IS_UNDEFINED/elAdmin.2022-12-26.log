@@ -1,0 +1,50 @@
+elAdmin- 2022-07-14 08:43:35 [main] INFO  me.zhengjie.AppRun - Starting AppRun on DESKTOP-R3S1DBV with PID 17272 (D:\IdeaProjects\eladmin-system\target\classes started by Administrator in D:\IdeaProjects)
+elAdmin- 2022-07-14 08:43:35 [main] INFO  me.zhengjie.AppRun - The following profiles are active: local
+elAdmin- 2022-07-14 08:43:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+elAdmin- 2022-07-14 08:43:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1223ms. Found 159 repository interfaces.
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncTaskProperties' of type [me.zhengjie.config.thread.AsyncTaskProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncTaskExecutePool' of type [me.zhengjie.config.thread.AsyncTaskExecutePool$$EnhancerBySpringCGLIB$$278cedff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$35517eb0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [me.zhengjie.config.RedisConfig$$EnhancerBySpringCGLIB$$4e79c4c8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$cdff46ea] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5c3522' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$f2d3e99c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8000 (http)
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/9.0.12
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\jdk\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Git\cmd;D:\jdk\bin;D:\jdk\jre\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;.]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4743 ms
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean - Mapping filter: 'springSecurityFilterChain' to: [/*]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'corsFilter' to: [/*]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+elAdmin- 2022-07-14 08:43:40 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+elAdmin- 2022-07-14 08:43:41 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+elAdmin- 2022-07-14 08:43:41 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+elAdmin- 2022-07-14 08:43:41 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+elAdmin- 2022-07-14 08:43:41 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
